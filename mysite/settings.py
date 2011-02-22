@@ -89,8 +89,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'books',
     'django.contrib.admin',
+    #
+    'django_extensions',
+    'debug_toolbar',
+    #
+    'books',
     
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
