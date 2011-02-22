@@ -1,0 +1,62 @@
+#!/bin/bash
+
+cd $(dirname ${0})
+
+if [ "Darwin" == `uname` ]; then
+    if [ ! -x /usr/local/bin/virtualenv ]; then
+        echo "VirtualEnv requires system permissions to install."
+        sudo easy_install distribute
+        sudo easy_install virtualenv
+    fi
+
+    if [ ! -d env ]; then
+        virtualenv --prompt '[BookCheck] ' --distribute --no-site-packages env
+    fi
+    
+    . env/bin/activate
+fi
+
+case $1 in
+    'help' )
+        cat <<__EOF
+Usage: go (freeze|help|)
+
+To install packages:
+
+  . env/bin/activate
+  pip install <package>
+  deactivate
+
+To update the package dependencies:
+  
+  ./go freeze
+
+__EOF
+    ;;
+
+    'freeze' )
+        pip freeze | tee conf/dependencies.conf
+    ;;
+
+    'upgrade-deps' )
+        grep -v "^-e" < conf/dependencies.conf | sed 's/==/>=/g' > conf/dependencies.conf.upgrade
+        pip install -U -r conf/dependencies.conf.upgrade
+        pip freeze > conf/dependencies.conf
+        rm conf/dependencies.conf.upgrade
+    ;;
+
+
+    * )
+        mkdir -p data
+
+        echo Installing any necessary packages into your virtualenv...
+        pip install --requirement=conf/dependencies.conf
+
+        pushd mysite
+        python manage.py clean_pyc
+        python manage.py syncdb --noinput --migrate
+        python manage.py reset sessions --noinput
+        python manage.py runserver_plus 127.0.0.1:8001
+        popd
+    ;;
+esac
