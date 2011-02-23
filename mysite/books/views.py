@@ -17,11 +17,12 @@ def book_detail(request, book_id):
     
 def add_book(request, book_id=None):
     book = get_object_or_404(Book, pk=book_id) if book_id else None 
-    form = NewBookForm(request.POST, request.FILES, instance=book)
     if request.method == 'POST':
-        
+        form = NewBookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             book = form.save(commit=False)
             book.save()
             return redirect('bookcheck:book_list')
+    else:
+        form = NewBookForm(instance=book)        
     return render_to_response('add_book.html', { 'form':form, 'book':book }, RequestContext(request))            
