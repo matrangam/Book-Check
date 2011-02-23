@@ -7,6 +7,6 @@ urlpatterns = patterns('',
     url(r'^$', 'books.views.book_list', name="book_list"),
     url(r'^new$', 'books.views.add_book', name="add_book"),
     url(r'^(?P<book_id>\d+)/$', 'books.views.book_detail', name="book_detail"),
-    url(r'^(?P<book_id>\d+)/checkout$', 'books.views.checkout_book', name="checkout_book"),
+    url(r'^(?P<book_id>\d+)/checkout$', 'books.views.checkout_book', name="checkout"),
     
 )
