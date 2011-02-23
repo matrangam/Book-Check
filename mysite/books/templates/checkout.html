@@ -2,6 +2,9 @@
   <body>
 	
 	<p>Would you really like to check out {{ book.title }}?</p>
-	<input type="submit">
+	<form action="{% url bookcheck:checkout book.id %}" method ="POST">
+		{% csrf_token %}
+	<input type="submit" />
+	
   </body>
 </html>	
