@@ -1,0 +1,8 @@
+<html>
+  <body>
+	  <h1>Thank you for returning "{{ book.title }}"</h1>
+	  <form action="{% url bookcheck:returned book.id %}" method ="POST">
+			{% csrf_token %}
+		<input type="submit" />		
+  </body>
+</html>

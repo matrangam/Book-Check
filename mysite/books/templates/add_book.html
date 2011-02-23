@@ -4,12 +4,12 @@
 		<form action="{% url bookcheck:add_book %}" method ="POST">
 	  	{% csrf_token %}
 			<ul>
-				<li>{{ form.topic }}</li></br>
-				<li>Title:   {{ form.title }}</li>
-				<li>Author: {{ form.author }}</li>
-				<li>Quantity: {{ form.quantity }}</li>
-				<li>Description: {{ form.description }}</li>
-				
+				<li>Topic: {{ form.topic }}</li></br>
+				<li>Title:   {{ form.title }}</li></br>
+				<li>Author: {{ form.author }}</li></br>
+				<li>Quantity: {{ form.quantity }}</li></br>
+				<li>Description: {{ form.description }}</li></br>
+			</ul>	
 			<input type="submit">
 		</form>
   </body>

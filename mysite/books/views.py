@@ -34,3 +34,13 @@ def checkout(request, book_id):
         return redirect('bookcheck:detail', book_id=book_id)
     
     return render_to_response('checkout.html', { 'book':book }, RequestContext(request))    
+
+def returned(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    
+    if request.method =='POST':
+        book.quantity = book.quantity + 1
+        book.save()
+        return redirect('bookcheck:detail', book_id)
+        
+    return render_to_response('returned.html', { 'book':book}, RequestContext(request)) 
