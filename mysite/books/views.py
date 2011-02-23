@@ -28,9 +28,10 @@ def add_book(request, book_id=None):
 
 def checkout(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
-    quantity = get_object_or_404(Book, pk=book_id) 
+    quantity = get_object_or_404(Book, pk=book_id)
+    
     if request.method == 'POST':
-        form = NewBookForm(request.POST, request.FILES, instance=book)
+        form = NewBookForm(request.POST, request.FILES, instance=quantity)
         if form.is_valid():
             quantity = form.save(commit=False)
             quantity = quantity-1
