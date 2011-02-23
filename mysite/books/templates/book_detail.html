@@ -4,8 +4,8 @@
 	<h1><a href="{% url bookcheck:book_list %}">{{ book.title }}</a></h1>
 	
 	<ul>
-	
-		<li>Topic: {{ book.topic.all }}</li></br> 
+	    
+    	<li>Topic: {% for topic in book.topic.all %}{{ topic }}, {% endfor %}</li></br>		
 		<li>Author: {{ book.author }}</li></br>
 		<li>Quantity: {{ book.quantity }}</li></br>
 		<li>Description: {{ book.description }}</li></br>
