@@ -26,3 +26,7 @@ def add_book(request, book_id=None):
     else:
         form = NewBookForm(instance=book)        
     return render_to_response('add_book.html', { 'form':form, 'book':book }, RequestContext(request))            
+
+def checkout_book(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    return render_to_response('checkout.html', {'book':book})    

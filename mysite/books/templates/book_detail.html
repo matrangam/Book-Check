@@ -11,6 +11,8 @@
 		<li>Description: {{ book.description }}</li></br>
 				
 	</ul>
-
+    
+	<p><a href="{% url bookcheck:checkout book.id %}">Checkout book?</a></p>
+    
   </body>
 </html>
