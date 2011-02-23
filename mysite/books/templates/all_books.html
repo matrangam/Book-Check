@@ -1,5 +1,17 @@
 <html>
   <body>
-	<h1>Mad books yo</h1>
+	
+	<h1>The Books</h1>
+	
+	<ul>
+	{% for book in book.all %}
+	
+		<li><a href="{% url bookcheck:book_detail book.id %}">{{ book.title }}</a>  {{ book.topic.all }}</li></br>
+	
+	{% endfor %}
+	</ul>
+
+    <h2><a href="{% url bookcheck:add_book %}">Add a new Book!</a></h2>
+
   </body>
 </html>

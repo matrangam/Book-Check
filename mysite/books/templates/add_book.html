@@ -1,0 +1,10 @@
+<html>
+  <body>
+    <h1>Add a book</h1>	
+
+	<h2><form action="{% url bookcheck:add_book  %}" method ="POST"></h2>
+	    {% csrf_token %}
+		{{ form }}
+	<input type="submit">
+  </body>
+</html>

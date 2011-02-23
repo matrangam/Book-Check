@@ -1,0 +1,15 @@
+<html>
+  <body>
+	
+	<h1><a href="{% url bookcheck:book_list %}">{{ book.title }}</a></h1>
+	
+	<ul>
+	
+		<li>{{ book.author }}</li></br>
+		<li>{{ book.quantity }}</li></br>
+		<li>{{ book.description }}</li></br>
+		
+	</ul>
+
+  </body>
+</html>
