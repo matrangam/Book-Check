@@ -1,11 +1,16 @@
 <html>
   <body>
     <h1>Add a book</h1>	
-	  
-	
-	    <p><form action="{% url bookcheck:add_book %}" method ="POST">{% csrf_token %}{{ form }}</p></br>
-	    
-	  	
-	<input type="submit">
+		<form action="{% url bookcheck:add_book %}" method ="POST">
+	  	{% csrf_token %}
+			<ul>
+				<li>{{ form.topic }}</li></br>
+				<li>Title:   {{ form.title }}</li>
+				<li>Author: {{ form.author }}</li>
+				<li>Quantity: {{ form.quantity }}</li>
+				<li>Description: {{ form.description }}</li>
+				
+			<input type="submit">
+		</form>
   </body>
 </html>
