@@ -12,7 +12,7 @@
 				
 	</ul>
     
-	<p><a href="{% url bookcheck:checkout book.id %}">Checkout book?</a></p>
+	<p>{% if book.quantity >= 1 %}<a href="{% url bookcheck:checkout book.id %}">Checkout book?</a>{% else %}Sorry this book is unavailable{% endif %}</p>
     
   </body>
 </html>
