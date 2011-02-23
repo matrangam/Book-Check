@@ -16,6 +16,10 @@ def book_detail(request, book_id):
     return render_to_response('book_detail.html', {'book':book})
     
 def add_book(request, book_id=None):
-    #book = get_object_or_404(Book, pk=book_id) 
-    form = NewBookForm()
-    return render_to_response('add_book.html', { 'form':form })            
+    book = get_object_or_404(Book, pk=book_id) if book_id else None 
+    form = NewBookForm(request.POST, request.FILES)
+    if form.is_valid():
+        book = form.save(commit=False)
+        book.save()
+        return redirect('bookcheck:book_list')
+    return render_to_response('add_book.html', { 'form':form, 'book':book }, RequestContext(request))            
