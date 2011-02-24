@@ -14,6 +14,11 @@ class Book(models.Model):
 	def __unicode__(self):
 		return self.title
 
-
+class User(models.Model):
+    user_name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=75)
+    books = models.ManyToManyField(Book)
+    def __unicode__(self):
+        return self.user_name
 
 
