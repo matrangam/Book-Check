@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <h1>Become a user</h1>	
+		<form action="{% url bookcheck:new_user %}" method ="POST">
+	  	{% csrf_token %}
+			<ul>
+				<li>Name: {{ form.user_name }}</li></br>
+				<li>Email:   {{ form.email }}</li></br>
+				<li>{{ form.books }}</li></br>
+			</ul>	
+			<input type="submit">
+		</form>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 #
-from books.models import Book, Topic
+from books.models import *
     
 class NewBookForm(ModelForm):
     class Meta:
@@ -13,4 +13,7 @@ class NewTopicForm(ModelForm):
         model = Topic        
         fields = ('tag',)
         
-        
+class NewUserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('user_name', 'email', 'books')
