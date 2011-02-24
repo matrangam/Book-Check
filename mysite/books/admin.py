@@ -1,4 +1,4 @@
-from books.models import Book, Topic, User
+from books.models import *
 from django.contrib import admin
 
 admin.site.register(Book)

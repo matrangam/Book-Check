@@ -2,15 +2,17 @@
   <body>
 	  <h1>All Users</h1>
 		
-		<ul>
-			{% for users in users.all %}
-			<li> {{ users.user_name }}</br> Contact: {{ users.email }}</br>
-				<ul>
-					<li>{% for book in users.books.all %} {{ book }} {% endfor %}</li>
-				</ul>	
-			</li>
-			{% endfor %}
-		</ul>	
+			<ul>
+				{% for users in users.all %}
+				<li>Name: {{ users.user_name }}</br> Contact: {{ users.email }}</br>
+					<ul>
+						{% for book in users.books.all %}
+	  					<li> "{{ book }}"</li>
+						{% endfor %}				
+					</ul>	
+				</li></br>
+				{% endfor %}
+			</ul>	
 	  
 	  <h2><a href="{% url bookcheck:new_user %}">Become a user, everyone is doing it...</a></h2>
   </body>

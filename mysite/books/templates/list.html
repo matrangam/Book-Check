@@ -3,13 +3,13 @@
 	
 	<h1>The Books</h1>
 	
-	<ul>
-	{% for book in book.all %}
+		<ul>
+			{% for book in book.all %}
 	
-		<li><a href="{% url bookcheck:detail book.id %}">{{ book.title }}</a></br>{% if book.quantity >= 1 %} Book is available{% else %} Book is not available{% endif %}</li></br>
+				<li><a href="{% url bookcheck:detail book.id %}">{{ book.title }}</a></br>{% if book.quantity >= 1 %} Book is available{% else %} Book is not available{% endif %}</li></br>
 	
-	{% endfor %}
-	</ul>
+			{% endfor %}
+		</ul>
 
     <h2><a href="{% url bookcheck:add_book %}">Add a new Book!</a></h2>
 		

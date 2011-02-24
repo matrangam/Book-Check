@@ -100,3 +100,4 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+INTERNAL_IPS = ('127.0.0.1',)
