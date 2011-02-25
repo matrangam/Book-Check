@@ -1,5 +1,8 @@
-<html>
-  <body>
+{% extends "_base.html" %}
+
+{% block page_title %}Bookcheck | New Book{% endblock %}
+
+{% block content %}
     <h1>Add a book</h1>	
 		<form action="{% url bookcheck:add_book %}" method ="POST">
 	  	{% csrf_token %}
@@ -9,9 +12,8 @@
 				<li>Author: {{ form.author }}</li></br>
 				<li>Quantity: {{ form.quantity }}</li></br>
 				<li>Description: {{ form.description }}</li></br>
-				<li>User: {{ form.user }}</li></br>
+				
 			</ul>	
 			<input type="submit">
 		</form>
-  </body>
-</html>
+{% endblock %}

@@ -6,7 +6,7 @@ from books.models import *
 class NewBookForm(ModelForm):
     class Meta:
         model = Book
-        fields = ('topic', 'title', 'author', 'quantity', 'description', 'user')
+        fields = ('topic', 'title', 'author', 'quantity', 'description')
         
 class NewTopicForm(ModelForm):
     class Meta:
@@ -16,4 +16,5 @@ class NewTopicForm(ModelForm):
 class NewUserForm(ModelForm):
     class Meta:
         model = User
-        fields = ('user_name', 'email', 'books')
+        fields = ('username', 'email', 'password', 'first_name', 'last_name')
+        

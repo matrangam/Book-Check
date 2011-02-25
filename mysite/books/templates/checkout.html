@@ -1,10 +1,10 @@
-<html>
-  <body>
-	
-		<p>Would you really like to check out "{{ book.title }}"?</p>
+{% extends "_base.html" %}
+
+{% block page_title %}Checkout | {{ book.title }}{% endblock %}
+
+{% block content %}
+		<p>{{ user }}, Would you really like to check out "{{ book.title }}"?</p>
 			<form action="{% url bookcheck:checkout book.id %}" method ="POST">
 				{% csrf_token %}
 			<input type="submit" />
-	
-  </body>
-</html>	
+{% endblock %}

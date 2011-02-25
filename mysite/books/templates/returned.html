@@ -1,8 +1,10 @@
-<html>
-  <body>
+{% extends "_base.html" %}
+
+{% block page_title %}Return | {{ book.title }}{% endblock %}
+
+{% block content %}
 	  <h1>Thank you for returning "{{ book.title }}"</h1>
 	  	<form action="{% url bookcheck:returned book.id %}" method ="POST">
 				{% csrf_token %}
 			<input type="submit" />		
-  </body>
-</html>
+{% endblock %}

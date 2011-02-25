@@ -1,12 +1,15 @@
-<html>
-  <body>
+{% extends "_base.html" %}
+
+{% block page_title %}Bookcheck | All Users{% endblock %}
+
+{% block content %}
 	  <h1>All Users</h1>
 		
 			<ul>
 				{% for users in users.all %}
-				<li>Name: {{ users.user_name }}</br> Contact: {{ users.email }}</br>
+				<li>Name: {{ users.username }}</br> Contact: {{ users.email }}</br>
 					<ul>
-						{% for book in users.books.all %}
+						{% for book in books.users %}
 	  					<li> "{{ book }}"</li>
 						{% endfor %}				
 					</ul>	
@@ -15,5 +18,4 @@
 			</ul>	
 	  
 	  <h2><a href="{% url bookcheck:new_user %}">Become a user, everyone is doing it...</a></h2>
-  </body>
-</html>
+{% endblock %}
