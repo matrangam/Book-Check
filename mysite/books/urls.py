@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^users$', 'books.views.users', name="users"),
     url(r'^new_user$', 'books.views.new_user', name="new_user"),
     
-    url(r'^login/$', 'django.contrib.auth.views.login', name="login"),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'registration/login.html'}, name="login"),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'registration/login.html'}, name="logout"),
     
 )

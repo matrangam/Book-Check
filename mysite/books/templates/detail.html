@@ -12,14 +12,18 @@
 			<li>Quantity: {{ book.quantity }}</li></br>
 			<li>Description: {{ book.description }}</li></br>
 			<li>Currently checked out by:
-			{% for user in book.users.all %}
-			 	"{{ user }} / {{ user.email }}", 
-				{% empty %}
-	 		  Nobody!
-				{% endfor %}
-	      </li></br>
+					{% for user in book.users.all %}
+				 	"{{ user }} / {{ user.email }}", 
+					{% empty %}
+		 		  Nobody!
+					{% endfor %}</li></br>
 		</ul>
-  
-	<p>{% if book.quantity >= 1 %}<a href="{% url bookcheck:checkout book.id %}">Want to Checkout this book?</a>{% else %}Sorry this book is unavailable{% endif %}</p>
-	 <p><a href="{% url bookcheck:returned book.id %}">Are you returning this book?</a></p>   
+
+  {% if not user in book.users.all %}  
+	<p>{% if book.quantity >= 1 %}<a href="{% url bookcheck:checkout book.id %}">Want to Checkout this book?</a>
+		 {% else %}Sorry this book is unavailable{% endif %}</p>
+  {% else %}  
+	<p><a href="{% url bookcheck:returned book.id %}">Are you returning this book?</a></p>   
+	{% endif %}
+		
 {% endblock %}
