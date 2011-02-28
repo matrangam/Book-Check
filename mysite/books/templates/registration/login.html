@@ -14,20 +14,20 @@
 
 <h1>Sign in to your Bookcheck Account</h1>
 
-<div class="drop-shadow raised">
-<table>
-<tr>
+	<div class="drop-shadow raised">
+		<table>
+		<tr>
 	
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
+		    <td>{{ form.username.label_tag }}</td>
+		    <td>{{ form.username }}</td>
+		</tr>
+		<tr>
+		    <td>{{ form.password.label_tag }}</td>
+		    <td>{{ form.password }}</td>
 
-</tr>
-</table>
-</div>
+		</tr>
+		</table>
+	</div>
 
 <input type="submit" value="login" />
 <input type="hidden" name="next" value="{{ next }}" />

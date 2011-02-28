@@ -3,19 +3,17 @@
 {% block page_title %}Bookcheck | All Users{% endblock %}
 
 {% block content %}
+
 	  <h1>All Users</h1>
-		
-			<ul>
-				{% for users in users.all %}
-				<li>Name: {{ users.username }}</br> Contact: {{ users.email }}</br>
-					<ul>
-						{% for book in books.users %}
-	  					<li> "{{ book }}"</li>
-						{% endfor %}				
-					</ul>	
-				</li></br>
-				{% endfor %}
-			</ul>	
-	  
-	  <h2><a href="{% url bookcheck:new_user %}">Become a user, everyone is doing it...</a></h2>
+		  
+			<div class="drop-shadow raised">
+			
+			<p>{% for name in book.users %}{{ name }}</br> {{ name.username }}{% endfor %}</p>
+			
+			</div>
+			
+			
+			
+		<h2><a href="{% url bookcheck:new_user %}">Become a user, everyone is doing it...</a></h2>
+
 {% endblock %}

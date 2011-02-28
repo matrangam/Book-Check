@@ -4,7 +4,7 @@
 
 {% block content %}
 	  
-	<h2>Thank you for returning "{{ book.title }}"</h2>
+	<h2>Thank you for returning "{{ book.title }}", {{ user|capfirst }}</h2>
 	  	<form action="{% url bookcheck:returned book.id %}" method ="POST">
 				{% csrf_token %}
 					<input type="submit" />		
