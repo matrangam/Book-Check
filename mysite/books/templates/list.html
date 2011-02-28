@@ -15,7 +15,7 @@
 					
 					{% for name in book.users.all %}
 						
-					<p> {% if name == user %} <em>You</em> have this book checked out{% endif %}</p> 
+					<p> {% if name == user %} <a href = "{% url bookcheck:users %}">You<a/> have this book checked out{% endif %}</p> 
 						
 					{% empty %}
 					

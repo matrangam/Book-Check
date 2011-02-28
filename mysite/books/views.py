@@ -19,9 +19,8 @@ def list(request):
 
 
 def users(request):
-    book = Book.users
-    user = Book.users
-    return render_to_response('users.html', {'user':user, 'book':book})
+    users = User.objects.all()
+    return render_to_response('users.html', { 'users':users })
 
 
 @login_required
