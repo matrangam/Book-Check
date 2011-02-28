@@ -2,11 +2,15 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 #
 from books.models import Book, Topic
+#
+from os.path import join
+
 
 urlpatterns = patterns('',
     
+    url(r'^assets/(?P<path>.*)$', 'django.views.static.serve', {'document_root': join(settings.PROJECT_ROOT, 'mysite/assets')}, name='assets'),
     url(r'^$', 'books.views.list', name="list"),
-    #url(r'^login$', 'books.views.login', name="login"),
+    
     url(r'^new$', 'books.views.add_book', name="add_book"),
     url(r'^(?P<book_id>\d+)/$', 'books.views.detail', name="detail"),
     

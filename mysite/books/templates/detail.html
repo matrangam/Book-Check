@@ -5,19 +5,21 @@
 {% block content %}
 	<h1><a href="{% url bookcheck:list %}">{{ book.title }}</a></h1>
 
+<div class ="drop-shadow raised">
 		<ul>
 	  
-	    <li>Topic: {% for topic in book.topic.all %}{{ topic }}, {% endfor %}</li></br>		
-			<li>Author: {{ book.author }}</li></br>
-			<li>Quantity: {{ book.quantity }}</li></br>
-			<li>Description: {{ book.description }}</li></br>
-			<li>Currently checked out by:
+	    <li><em>Topic:</em> {% for topic in book.topic.all %}{{ topic }}, {% endfor %}</li></br>		
+			<li><em>Author:</em> {{ book.author }}</li></br>
+			<li><em>Quantity:</em> {{ book.quantity }}</li></br>
+			<li><em>Description:</em> {{ book.description }}</li></br>
+			<li><em>Currently checked out by:</em>
 					{% for user in book.users.all %}
 				 	"{{ user }} / {{ user.email }}", 
 					{% empty %}
 		 		  Nobody!
 					{% endfor %}</li></br>
 		</ul>
+</div>
 
   {% if not user in book.users.all %}  
 	<p>{% if book.quantity >= 1 %}<a href="{% url bookcheck:checkout book.id %}">Want to Checkout this book?</a>
@@ -25,5 +27,5 @@
   {% else %}  
 	<p><a href="{% url bookcheck:returned book.id %}">Are you returning this book?</a></p>   
 	{% endif %}
-		
+			
 {% endblock %}

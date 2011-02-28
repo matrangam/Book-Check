@@ -3,8 +3,18 @@
 {% block page_title %}Return | {{ book.title }}{% endblock %}
 
 {% block content %}
-	  <h1>Thank you for returning "{{ book.title }}"</h1>
+	  
+	<h2>Thank you for returning "{{ book.title }}"</h2>
 	  	<form action="{% url bookcheck:returned book.id %}" method ="POST">
 				{% csrf_token %}
-			<input type="submit" />		
+					<input type="submit" />		
+			</form>
+		
+		<h2>Leave a comment</h2>
+			<form action="{% url bookcheck:add_book %}" method ="POST">
+				{% csrf_token %}
+					<li>Description: {{ form.description }}</li></br>
+			</form>
+			
 {% endblock %}
+
