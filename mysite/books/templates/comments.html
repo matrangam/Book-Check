@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+
+{% block page_title %}Bookcheck | Comments{% endblock %}
+
+{% block content %}
+
+	<h1>Leave your comments here<h1>
+					
+				<form action="{% url bookcheck:comments book.id %}" method ="POST">
+				
+				{% csrf_token %}
+				
+				<p>{{ form.comments }}</p>
+				
+				<input type="submit">
+</form>
+
+{% endblock %}

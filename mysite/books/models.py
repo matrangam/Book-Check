@@ -12,6 +12,7 @@ class Book(models.Model):
     quantity = models.IntegerField()
     description = models.TextField(max_length=500)
     check_date = models.DateTimeField(default=None, blank=True, null=True)
+    comments = models.TextField(max_length=500, blank=True)
     
     users = models.ManyToManyField(User, blank=True, null=True)
     topic = models.ManyToManyField('Topic')

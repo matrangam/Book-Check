@@ -14,8 +14,8 @@ from books.forms import *
 @login_required
 def list(request):
     book = Book.objects.all()
-    user = Book.users
-    return render_to_response('list.html', {'book': book, 'user': request.user})
+    
+    return render_to_response('list.html', {'book': book, 'users': request.user})
 
 
 def users(request):
@@ -45,7 +45,7 @@ def add_book(request, book_id=None):
             book = form.save(commit=False)
             book.check_date = datetime.now()
             book = form.save()
-            return redirect('bookcheck:list', book_id=book.id)
+            return redirect('bookcheck:list')
     else:
         form = NewBookForm(instance=book)        
     return render_to_response('add_book.html', { 'form':form, 'book':book }, RequestContext(request))
@@ -87,4 +87,24 @@ def returned(request, book_id):
             book.users.remove(request.user)
         return redirect('bookcheck:detail', book_id=book_id)
         
-    return render_to_response('returned.html', { 'book':book }, RequestContext(request)) 
+    return render_to_response('returned.html', { 'book':book }, RequestContext(request))
+
+
+def comments(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    if request.method == 'POST':
+         form = PartialBookForm(request.POST, request.FILES, instance=book)
+         if form.is_valid():
+             book = form.save(commit=False)
+             book.check_date = datetime.now()
+             book = form.save()
+         return redirect('bookcheck:detail', book_id=book.id)
+    else:
+        form = PartialBookForm(instance=book)
+    return render_to_response('comments.html',
+        { 
+        'form':form,
+        'book':book,
+        'user':request.user 
+        }, 
+        RequestContext(request))    

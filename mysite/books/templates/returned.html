@@ -5,16 +5,15 @@
 {% block content %}
 	  
 	<h2>Thank you for returning "{{ book.title }}", {{ user|capfirst }}</h2>
+	
+	<h3><a href="{% url bookcheck:comments book.id %}">Would you like to leave a comment for others to see?</a></h3>
+	
 	  	<form action="{% url bookcheck:returned book.id %}" method ="POST">
 				{% csrf_token %}
 					<input type="submit" />		
 			</form>
 		
-		<h2>Leave a comment</h2>
-			<form action="{% url bookcheck:add_book %}" method ="POST">
-				{% csrf_token %}
-					<li>Description: {{ form.description }}</li></br>
-			</form>
+		
 			
 {% endblock %}
 

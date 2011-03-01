@@ -4,25 +4,24 @@
 
 {% block content %}
     
-
 		<h1>Add a book</h1>	
-	
-			<form action="{% url bookcheck:add_book %}" method ="POST">
-	  	
-				{% csrf_token %}
-					
-					<div class="drop-shadow raised">
-						<ul>
-							
-							<li><em>Topic:</em> {{ form.topic }}</li></br>
-							<li><em>Title:</em>   {{ form.title }}</li></br>
-							<li><em>Author:</em> {{ form.author }}</li></br>
-							<li><em>Quantity:</em> {{ form.quantity }}</li></br>
-							<li><em>Description:</em> {{ form.description }}</li></br>
-							
+
+		<form action="{% url bookcheck:add_book %}" method ="POST">
+  	
+			{% csrf_token %}
 				
-						</ul>	
-					</div>
-			  <input type="submit">
-		  </form>
+				<div class="drop-shadow raised">
+					<ul>
+						
+						<li><em>Topic:</em> {{ form.topic }}</li></br>
+						<li><em>Title:</em>   {{ form.title }}</li></br>
+						<li><em>Author:</em> {{ form.author }}</li></br>
+						<li><em>Quantity:</em> {{ form.quantity }}</li></br>
+						<li><em>Description:</em> {{ form.description }}</li></br>
+						
+			
+					</ul>	
+				</div>
+		  <input type="submit">
+	  </form>
 {% endblock %}

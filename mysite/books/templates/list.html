@@ -13,16 +13,14 @@
 				
 				<li><a href="{% url bookcheck:detail book.id %}">{{ book.title }}</a></br> 
 					
-					{% for name in book.users.all %}
+					{% for user in book.users.all %}
 						
-					<p> {% if name == user %} <a href = "{% url bookcheck:users %}">You<a/> have this book checked out{% endif %}</p> 
+					<p> {% if user == users %} <a href = "{% url bookcheck:users %}">You<a/> have this book checked out{% endif %}</p> 
 						
-					{% empty %}
-					
-					<p>{% if book.quantity >= 1 %}This book is currently available!{% else %} This book is not available at this time...{% endif %}</p>
-					
 					{% endfor %}
-				
+					
+					<p>{% if book.quantity == 0 %} The book is not available at this time...{% else %}This book is currently available!{% endif %}</p>
+																
 				</div>
 				
 			{% endfor %}
@@ -33,6 +31,6 @@
 	
   <p><a href = "{% url bookcheck:logout %}">Logout</a></p>  	
 	
-	{% if book.quantity >= 1 %} Book is available{% else %} Book is not available{% endif %}</li></br>
+	
 	
 {% endblock %}
