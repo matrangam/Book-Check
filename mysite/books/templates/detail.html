@@ -20,11 +20,13 @@
 							{% empty %}</br>
 				 		  	Nobody!
 							{% endfor %}</li></br>
+					
 					{% if book.comments %}
 			<li><em>Comments:</em> {{ book.comments }}</br>
 		      <em>posted by:</em> {{ user }}</br>
 		 		  <em>on:</em> {{ book.check_date}}</li>
 			    {% endif %} 
+					
 		</ul>
 </div>
 
@@ -37,5 +39,8 @@
   {% else %}  
 		<p><a href="{% url bookcheck:returned book.id %}"> {{ user|capfirst }}, Are you returning this book?</a></p>   
 	{% endif %}
-			
+	{% if user in book.users.all %}
+		<h3><a href="{% url bookcheck:comments book.id %}">Would you like to leave a comment for others to see?</a></h3>
+	{% endif %}
 {% endblock %}
+
