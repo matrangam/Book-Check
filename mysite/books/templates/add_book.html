@@ -6,7 +6,7 @@
     
 		<h1>Add a book</h1>	
 
-		<form action="{% url bookcheck:add_book %}" method ="POST">
+		<form action="{% url bookcheck:add_book %}" enctype="multipart/form-data" method ="POST">
   	
 			{% csrf_token %}
 				
@@ -18,7 +18,7 @@
 						<li><em>Author:</em> {{ form.author }}</li></br>
 						<li><em>Quantity:</em> {{ form.quantity }}</li></br>
 						<li><em>Description:</em> {{ form.description }}</li></br>
-						
+						<li><em>PDF version:</em> <a href = >{{ form.pdf }}</li></br>
 			
 					</ul>	
 				</div>

@@ -14,26 +14,21 @@ from books.forms import *
 @login_required
 def list(request):
     book = Book.objects.all()
-    
     return render_to_response('list.html', {'book': book, 'users': request.user})
-
 
 def users(request):
     users = User.objects.all()
     return render_to_response('users.html', { 'users':users })
-
 
 @login_required
 def detail(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     return render_to_response('detail.html', {'book':book, 'user': request.user})
 
-
 @login_required
 def user_detail(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     return render_to_response('user_detail.html', {'user':user})    
-
 
 @login_required
 @permission_required('mysite.add_book')
@@ -47,9 +42,9 @@ def add_book(request, book_id=None):
             book = form.save()
             return redirect('bookcheck:list')
     else:
-        form = NewBookForm(instance=book)        
-    return render_to_response('add_book.html', { 'form':form, 'book':book }, RequestContext(request))
+        form = NewBookForm(instance=book)       
 
+    return render_to_response('add_book.html', { 'form':form, 'book':book }, RequestContext(request))
 
 def new_user(request, user_id=None):
     user = get_object_or_404(User, pk=user_id) if user_id else None
@@ -61,7 +56,6 @@ def new_user(request, user_id=None):
     else:
         form = NewUserForm(instance=user)
     return render_to_response('new_user.html', { 'form':form, 'user':user }, RequestContext(request))                 
-
 
 @login_required
 def checkout(request, book_id):
@@ -85,10 +79,9 @@ def returned(request, book_id):
             book.quantity = book.quantity + 1
             book.save()
             book.users.remove(request.user)
-        return redirect('bookcheck:detail', book_id=book_id)
+        return redirect('bookcheck:comments', book_id=book_id)
         
     return render_to_response('returned.html', { 'book':book }, RequestContext(request))
-
 
 def comments(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
@@ -108,3 +101,5 @@ def comments(request, book_id):
         'user':request.user 
         }, 
         RequestContext(request))    
+
+

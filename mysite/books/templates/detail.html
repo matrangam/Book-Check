@@ -5,30 +5,33 @@
 {% block content %}
 	<h1><a href="{% url bookcheck:list %}">{{ book.title }}</a></h1>
 
-<div class ="drop-shadow raised">
-		<ul>
+		<div class ="drop-shadow raised">
+				<ul>
 	  
-	    <li><em>Topic:</em> {% for topic in book.topic.all %}{{ topic }}, {% endfor %}</li></br>		
-			<li><em>Author:</em> {{ book.author }}</li></br>
-			<li><em>Quantity:</em> {{ book.quantity }}</li></br>
-			<li><em>Description:</em> {{ book.description }}</li></br>
-			<li><em>Currently checked out by:</em></br>
-							{% for user in book.users.all %}</br>
-						 		<ul>
-									<li>"<em>{{ user }}</em> / {{ user.email }}", on: {{ book.check_date }}</li> 
+			    <li><em>Topic:</em> {% for topic in book.topic.all %}{{ topic }}, {% endfor %}</li></br>		
+					<li><em>Author:</em> {{ book.author }}</li></br>
+					<li><em>Quantity:</em> {{ book.quantity }}</li></br>
+					<li><em>Description:</em> {{ book.description }}</li></br>
+					{% if book.pdf %}
+					<li><em>PDF Version:</em><a href = "{{ book.pdf }}">File</a></li></br>
+					{% endif %}
+					<li><em>Currently checked out by:</em></br>
+	  			
+						 		<ul></br>
+									{% for user in book.users.all %}
+									<li>"<em>{{ user }}</em> / {{ user.email }}", on: {{ book.check_date }}</li>
+									{% empty %}
+									<li>Nobody!</li></br>
+									{% endfor %} 
 								</ul>	
-							{% empty %}</br>
-				 		  	Nobody!
-							{% endfor %}</li></br>
-					
-					{% if book.comments %}
-			<li><em>Comments:</em> {{ book.comments }}</br>
-		      <em>posted by:</em> {{ user }}</br>
-		 		  <em>on:</em> {{ book.check_date}}</li>
-			    {% endif %} 
-					
-		</ul>
-</div>
+							</br>
+							{% if book.comments %}
+					<li><em>Comments:</em> {{ book.comments }}</br>
+				      <em>posted by:</em> {{ user }}</br>
+				 		  <em>on:</em> {{ book.check_date}}</li>
+					    {% endif %} 
+				</ul>
+		</div>
 
   {% if not user in book.users.all %}  
 		<p> {% if book.quantity >= 1 %}
@@ -39,8 +42,6 @@
   {% else %}  
 		<p><a href="{% url bookcheck:returned book.id %}"> {{ user|capfirst }}, Are you returning this book?</a></p>   
 	{% endif %}
-	{% if user in book.users.all %}
-		<h3><a href="{% url bookcheck:comments book.id %}">Would you like to leave a comment for others to see?</a></h3>
-	{% endif %}
+
 {% endblock %}
 

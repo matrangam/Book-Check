@@ -5,30 +5,18 @@
 {% block content %}
 	
 	<h1>The Books</h1>
-
 		<ul>
-			
 			{% for book in book.all %}
 				<div class ="drop-shadow raised">
-				
-				<li><a href="{% url bookcheck:detail book.id %}">{{ book.title }}</a></br> 
-					
-					{% for user in book.users.all %}
-						
-					<p> {% if user == users %} <a href = "{% url bookcheck:users %}">You<a/> have this book checked out{% endif %}</p> 
-						
-					{% endfor %}
-					
+					<li><a href="{% url bookcheck:detail book.id %}">{{ book.title }}</a></br> 
+						{% for user in book.users.all %}
+						<p> {% if user == users %} <a href = "{% url bookcheck:users %}">You<a/> have this book checked out{% endif %}</p> 
+						{% endfor %}
 					<p>{% if book.quantity == 0 %} The book is <em>not</em> available at this time...{% else %}This book <em>is</em> currently available!{% endif %}</p>
-																
 				</div>
-				
 			{% endfor %}
-		
 		</ul>
-	
   <h2><a href="{% url bookcheck:add_book %}">Add a new Book!</a></h2>
-	
   <p><a href = "{% url bookcheck:logout %}">Logout</a></p>  	
 	
 	

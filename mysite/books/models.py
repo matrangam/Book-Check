@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from os.path import join
+from django.conf import settings
 
 class Topic(models.Model):
 	tag = models.CharField(max_length=25)
@@ -7,7 +9,7 @@ class Topic(models.Model):
 		return self.tag
 
 class Book(models.Model):
-    title = models.CharField(max_length=500)
+    title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     quantity = models.IntegerField()
     description = models.TextField(max_length=500)
@@ -16,6 +18,7 @@ class Book(models.Model):
     
     users = models.ManyToManyField(User, blank=True, null=True)
     topic = models.ManyToManyField('Topic')
-    
+    pdf = models.FileField(upload_to=join(settings.PROJECT_ROOT, 'mysite/pdf/'), blank=True)
+        
     def __unicode__(self):
         return self.title

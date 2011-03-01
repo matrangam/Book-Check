@@ -1,0 +1,44 @@
+===========================>DJANGO Commands<===============================
+
+to activate - CD to directory and execute  ". ./env/bin/activate"
+to deacrive "deactivate"
+
+for Textmate 
+
+CD to directory and type "mate ."
+
+==========================>CREATE A VI GO FILE<============================
+
+$ vi go
+
+#!/bin/bash
+
+. env/bin/activate
+
+pushd RecipeApp
+python manage.py syncdb --noinput
+python manage.py runserver
+popd
+
+wq!
+
+$ chmod +x go
+$ ./go
+
+==========================> CREATE A VIRTUAL ENVIRONMENT<==================
+
+$ virtualenv --distribute --no-site-packages --prompt "[ENVNAME]" env
+$ pip install django
+$ pip install django-debug-toolbar
+
+==========================> CREATE A .GITIGNORE <==========================
+
+$ vi .gitignore
+
+*add your ignore filez*
+
+==========================>Check internal IP Adresses<=====================
+
+$ ifconfig -a
+
+*shows your connection ip's
