@@ -13,7 +13,11 @@
 					<li><em>Quantity:</em> {{ book.quantity }}</li></br>
 					<li><em>Description:</em> {{ book.description }}</li></br>
 					{% if book.pdf %}
-					<li><em>PDF Version:</em><a href = "{{ book.pdf }}">File</a></li></br>
+					<li><em>PDF Version:</em> <a href="{% url bookcheck:pdf_view book.id %}">FILEZ</a></br>
+																		{{ book.pdf }} ;</br>
+																		{{ book.pdf.file }} ;</br>
+						 												{{ book.pdf.size }} ;</br> 
+																		{{ book.pdf.name }}</a></li></br>
 					{% endif %}
 					<li><em>Currently checked out by:</em></br>
 	  			

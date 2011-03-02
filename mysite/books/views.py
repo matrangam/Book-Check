@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse
 from django.template import RequestContext, Context, loader
 from django.contrib.auth import authenticate, login
@@ -45,7 +45,8 @@ def add_book(request, book_id=None):
         form = NewBookForm(instance=book)       
 
     return render_to_response('add_book.html', { 'form':form, 'book':book }, RequestContext(request))
-
+            
+            
 def new_user(request, user_id=None):
     user = get_object_or_404(User, pk=user_id) if user_id else None
     if request.method == 'POST':
@@ -102,4 +103,14 @@ def comments(request, book_id):
         }, 
         RequestContext(request))    
 
+def pdf_view(request, book_id):
+    from os.path import basename
+    book = get_object_or_404(Book, pk=book_id)
+    pdf = book.pdf.path
 
+    file_name = basename(pdf)
+    fsock = open(pdf, 'r')
+    response = HttpResponse(fsock, mimetype='binary')
+    response['Content-Disposition'] = ('attachment; filename=%s'%(file_name))
+    
+    return response
