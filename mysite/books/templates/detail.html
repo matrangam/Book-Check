@@ -7,15 +7,10 @@
 
 		<div class ="drop-shadow raised">
 				<ul>
-	  
-			    <li><em>Topic:</em> {% for topic in book.topic.all %}{{ topic }}, {% endfor %}</li></br>		
+	  	    <li><em>Topic:</em> {% for topic in book.topic.all %}{{ topic }}, {% endfor %}</li></br>		
 					<li><em>Author:</em> {{ book.author }}</li></br>
 					<li><em>Quantity:</em> {{ book.quantity }}</li></br>
 					<li><em>Description:</em> {{ book.description }}</li></br>
-					{% if book.pdf %}
-					<li><em><a href="{% url bookcheck:pdf_view book.id %}">PDF Version:</a></em></br>
-																	
-					{% endif %}
 					<li><em>Currently checked out by:</em></br>
 	  			
 						 		<ul></br>
@@ -31,6 +26,11 @@
 				      <em>posted by:</em> {{ user }}</br>
 				 		  <em>on:</em> {{ book.check_date}}</li>
 					    {% endif %} 
+				
+					{% if book.pdf %}
+					<li><em><a href="{% url bookcheck:pdf_view book.id %}">PDF Version</a></em></br>																	
+					{% endif %}
+				
 				</ul>
 		</div>
 
