@@ -18,6 +18,7 @@ class Book(models.Model):
     
     users = models.ManyToManyField(User, blank=True, null=True)
     topic = models.ManyToManyField('Topic')
+    
     pdf = models.FileField(upload_to=join(settings.PROJECT_ROOT, 'mysite/pdf/'), blank=True)
         
     def __unicode__(self):
