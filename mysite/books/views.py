@@ -23,6 +23,7 @@ def users(request):
 @login_required
 def detail(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
+#    book.objects.order_by('title')
     return render_to_response('detail.html', {'book':book, 'user': request.user})
 
 @login_required
