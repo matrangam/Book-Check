@@ -1,11 +1,10 @@
 from django.forms import ModelForm
-<<<<<<< Updated upstream
 from django import forms
 #
 from books.models import *
 
-=======
-from django import form
+
+from django import forms
 from books.models import Book, Topic
 
 
