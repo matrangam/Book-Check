@@ -1,7 +1,13 @@
 from django.forms import ModelForm
+<<<<<<< Updated upstream
 from django import forms
 #
 from books.models import *
+
+=======
+from django import form
+from books.models import Book, Topic
+
 
 class NewBookForm(ModelForm):
     class Meta:
